@@ -1,0 +1,70 @@
+---
+layout: default
+---
+
+<section class="padding-block-double">
+  <div class="width-wide margin-inline-auto padding-inline-half">
+    <h1 class="font-family-serif font-size-4xl line-height-tight text-align-center margin-block-end">The Library Index</h1>
+
+    <!-- Where to Start -->
+    {% if site.data.series %}
+    <div class="where-to-start margin-block-end-double">
+      <p class="label margin-block-end-half">Where to Start</p>
+      <ul>
+        {% for s in site.data.series %}
+        {% assign series = s[1] %}
+        {% assign key = s[0] %}
+        {% assign starter = site.books | where: "series", key | where: "series_order", 1 | first %}
+        <li>
+          <strong><a href="#{{ key }}" class="link">{{ series.name }}</a></strong>
+          {% if starter %}
+          — Start with <a href="{{ starter.url | relative_url }}" class="link">{{ starter.title }}</a>.
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    <!-- Per-series sections -->
+    {% for s in site.data.series %}
+    {% assign series = s[1] %}
+    {% assign key = s[0] %}
+    {% assign series_books = site.books | where: "series", key | sort: "series_order" %}
+    {% if series_books.size > 0 %}
+    <section class="margin-block-end-double" id="{{ key }}">
+      <h2 class="font-family-serif font-size-3xl margin-block-end-half">{{ series.name }}</h2>
+      <p class="color-text-2 margin-block-end">{{ series.tagline }}</p>
+      <div class="book-grid">
+        {% for book in series_books %}
+        {% include book-card.html book=book %}
+        {% endfor %}
+      </div>
+    </section>
+    {% unless forloop.last %}<hr class="divider margin-block-double">{% endunless %}
+    {% endif %}
+    {% endfor %}
+
+    <!-- Uncategorized books -->
+    {% assign all_series_keys = "" %}
+    {% for s in site.data.series %}
+    {% assign all_series_keys = all_series_keys | append: s[0] | append: "," %}
+    {% endfor %}
+    {% assign orphan_books = "" | split: "" %}
+    {% for book in site.books %}
+    {% unless all_series_keys contains book.series %}
+    {% assign orphan_books = orphan_books | push: book %}
+    {% endunless %}
+    {% endfor %}
+    {% if orphan_books.size > 0 %}
+    <section class="margin-block-end-double">
+      <h2 class="font-family-serif font-size-3xl margin-block-end">Standalone</h2>
+      <div class="book-grid">
+        {% for book in orphan_books %}
+        {% include book-card.html book=book %}
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+  </div>
+</section>

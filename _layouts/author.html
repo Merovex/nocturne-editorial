@@ -1,0 +1,45 @@
+---
+layout: default
+---
+{% assign author_key = page.author_key | default: page.slug %}
+{% assign author_data = site.data.authors[author_key] %}
+{% assign author = author_data | default: page %}
+{% assign avatar = author.avatar | default: author.photo %}
+
+<section class="padding-block-double">
+  <div class="width-wide margin-inline-auto padding-inline-half">
+    <!-- Profile -->
+    <div class="flex flex-column sm:flex-row gap-xl align-items-center margin-block-end-double">
+      {% if avatar %}
+      <img src="{{ avatar | relative_url }}" alt="{{ author.name }}"
+           class="border-radius-full object-fit-cover" style="width: 150px; height: 150px;" loading="lazy">
+      {% endif %}
+      <div>
+        <h1 class="font-family-serif font-size-4xl line-height-tight margin-block-end-half">{{ author.name | default: page.title }}</h1>
+        {% if author.genres %}
+        <p class="label margin-block-end-half">{{ author.genres | join: " · " }}</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Bio -->
+    <div class="width-prose margin-inline-auto prose margin-block-end-double">
+      {% if content != "" %}
+        {{ content }}
+      {% elsif author.bio %}
+        {{ author.bio | markdownify }}
+      {% endif %}
+    </div>
+
+    <!-- Their books -->
+    {% assign author_books = site.books | where: "author", author_key %}
+    {% if author_books.size > 0 %}
+    <h2 class="font-family-serif font-size-2xl margin-block-end text-align-center">Books by {{ author.name | default: page.title }}</h2>
+    <div class="grid grid-columns-1 sm:grid-columns-2 lg:grid-columns-3 gap-xl">
+      {% for book in author_books %}
+        {% include book-card.html book=book %}
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>

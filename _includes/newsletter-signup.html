@@ -1,0 +1,18 @@
+{% assign headline = include.headline | default: "Join the Fleet" %}
+{% assign subtext = include.subtext | default: "New releases and behind-the-scenes updates. No spam." %}
+
+<section class="text-align-center padding-block-double">
+  <h3 class="font-family-serif font-size-2xl margin-block-end-half color-text-1">{{ headline }}</h3>
+  <p class="color-text-2 font-size-sm margin-block-end-half">{{ subtext }}</p>
+  {% if site.buttondown_url %}
+  <form action="{{ site.buttondown_url }}" method="post" target="popupwindow"
+        class="flex flex-column sm:flex-row gap-sm justify-center align-items-center width-prose margin-inline-auto padding-inline-half">
+    <label for="newsletter-email" class="screen-reader-only">Email address</label>
+    <input type="email" name="email" id="newsletter-email"
+           placeholder="Enter your email address" required
+           class="newsletter-input flex-grow width-full border-radius-md padding-half border font-size-base background-surface-1 color-text-1">
+    <input type="hidden" value="1" name="embed">
+    <button type="submit" class="btn btn-primary">Subscribe</button>
+  </form>
+  {% endif %}
+</section>

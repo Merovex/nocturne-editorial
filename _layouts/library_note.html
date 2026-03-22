@@ -1,0 +1,57 @@
+---
+layout: default
+---
+
+<article class="padding-block-double">
+  <nav class="width-prose margin-inline-auto padding-inline-half margin-block-end-half">
+    <div class="flex gap-xs align-items-center font-size-sm color-text-2">
+      <a href="{{ '/library/' | relative_url }}" class="link">Library</a>
+      <span>&rsaquo;</span>
+      {% assign topic_path = page.url | split: '/' | slice: 0, 4 | join: '/' | append: '/' %}
+      {% assign topic_page = site.pages | where: "url", topic_path | first %}
+      {% if topic_page %}
+        <a href="{{ topic_page.url | relative_url }}" class="link">{{ topic_page.title }}</a>
+        <span>&rsaquo;</span>
+      {% endif %}
+      <span class="color-text-1">{{ page.title }}</span>
+    </div>
+  </nav>
+
+  <header class="width-prose margin-inline-auto padding-inline-half margin-block-end">
+    <h1 class="font-family-serif font-size-4xl line-height-tight">{{ page.title }}</h1>
+  </header>
+
+  <div class="width-prose margin-inline-auto padding-inline-half prose">
+    {{ content }}
+  </div>
+
+  <nav class="width-prose margin-inline-auto padding-inline-half padding-block flex justify-between border-block-start margin-block-start" aria-label="Note navigation">
+    {% assign topic_folder = page.url | split: '/' | slice: 1, 3 | join: '/' %}
+    {% assign all_notes = site.pages | where_exp: "page", "page.url contains topic_folder" | where_exp: "page", "page.layout == 'library_note'" | sort: "order" %}
+    {% assign current_index = 0 %}
+    {% for note in all_notes %}
+      {% if note.url == page.url %}
+        {% assign current_index = forloop.index0 %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+    {% assign prev_index = current_index | minus: 1 %}
+    {% assign next_index = current_index | plus: 1 %}
+
+    {% if prev_index >= 0 %}
+      {% assign prev_note = all_notes[prev_index] %}
+      <a href="{{ prev_note.url | relative_url }}" class="link font-size-sm">&larr; {{ prev_note.title }}</a>
+    {% else %}<span></span>{% endif %}
+
+    {% if next_index < all_notes.size %}
+      {% assign next_note = all_notes[next_index] %}
+      <a href="{{ next_note.url | relative_url }}" class="link font-size-sm">{{ next_note.title }} &rarr;</a>
+    {% else %}<span></span>{% endif %}
+  </nav>
+
+  {% if topic_page %}
+  <div class="width-prose margin-inline-auto padding-inline-half text-align-center margin-block-start-half">
+    <a href="{{ topic_page.url | relative_url }}" class="link font-size-sm">Back to {{ topic_page.title }}</a>
+  </div>
+  {% endif %}
+</article>

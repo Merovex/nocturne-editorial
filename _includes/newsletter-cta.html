@@ -1,0 +1,18 @@
+{% if include.author %}
+{% assign buttondown_username = include.author.buttondown_username %}
+{% elsif page.author %}
+{% assign author_data = site.data.authors[page.author] %}
+{% assign buttondown_username = author_data.buttondown_username %}
+{% else %}
+{% assign buttondown_username = site.buttondown_username %}
+{% endif %}
+
+<div class="text-align-center padding-block">
+  <p class="color-text-2 margin-block-end-half">
+    <strong>Want to be the first to know when a new book is released?</strong>
+    <br>Subscribe for updates on new releases,
+    behind-the-scenes content, and exclusive previews (or grab the <a href="{{ "/feed.xml" | relative_url }}" class="link">RSS feed</a>)
+  </p>
+
+  {% include newsletter-field.html buttondown_username=buttondown_username %}
+</div>

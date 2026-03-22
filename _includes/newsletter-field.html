@@ -1,0 +1,25 @@
+{% assign bd_username = include.buttondown_username | default: site.buttondown_username %}
+
+<form action="https://buttondown.com/api/emails/embed-subscribe/{{ bd_username }}" method="post"
+  target="popupwindow" onsubmit="window.open('https://buttondown.com/{{ bd_username }}', 'popupwindow')"
+  class="flex flex-column sm:flex-row gap-sm justify-center align-items-center width-prose margin-inline-auto padding-inline-half"
+  data-controller="newsletter">
+  <div class="flex flex-column sm:flex-row gap-sm width-full justify-center">
+    <label for="newsletter-email-input" class="screen-reader-only">Email address for newsletter subscription</label>
+    <input type="email" name="email" id="newsletter-email-input" placeholder="Enter your email address" required
+      aria-describedby="newsletter-email-description"
+      class="newsletter-input flex-grow border-radius-md padding-half border font-size-base background-surface-1 color-text-1"
+      data-newsletter-target="email">
+    <input type="hidden" value="1" name="embed">
+    {% if include.tag %}
+    <input type="hidden" name="tag" value="{{ include.tag }}">
+    {% endif %}
+    {% if include.metadata_source %}
+    <input type="hidden" name="metadata__source" value="{{ include.metadata_source }}">
+    {% endif %}
+    <button type="submit" class="btn btn-primary">Subscribe</button>
+  </div>
+  <div id="newsletter-email-description" class="screen-reader-only">
+    Subscribe to receive new blog posts and book release updates via email. You can unsubscribe at any time.
+  </div>
+</form>

@@ -1,0 +1,12 @@
+{% assign author_key = include.key | default: page.author_key | default: page.slug %}
+{% assign author = site.data.authors[author_key] %}
+{% assign avatar = author.avatar | default: author.photo %}
+
+{% if author and avatar %}
+<figure class="text-align-center margin-block-end">
+  <img src="{{ avatar | relative_url }}"
+       alt="{{ author.name }}"
+       class="border-radius-full object-fit-cover margin-inline-auto" style="width: 150px; height: 150px;"
+       loading="lazy">
+</figure>
+{% endif %}

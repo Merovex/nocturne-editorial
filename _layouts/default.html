@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}" data-theme="dark" data-controller="theme">
+<head>
+  {% include head.html %}
+</head>
+<body class="background-surface-0 color-text-1">
+  <a href="#main-content" class="screen-reader-only">Skip to main content</a>
+  {% include nav.html %}
+  <main id="main-content">
+    {{ content }}
+  </main>
+  {% include footer.html %}
+  <script type="module" src="{{ '/assets/js/app.js' | relative_url }}"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+---
+layout: default
+---
+
+<!-- Header -->
+<section class="padding-block-double">
+  <div class="width-prose margin-inline-auto padding-inline-half">
+    {% if page.label %}
+    <p class="label margin-block-end-half">{{ page.label }}</p>
+    {% endif %}
+    <h1 class="font-family-serif font-size-4xl line-height-tight">{{ page.headline | default: page.title | default: "Blog" }}</h1>
+    <hr class="divider" style="width: 3rem; border-width: 2px; border-color: var(--link-color); margin-block: var(--space-lg);">
+    {% if page.description %}
+    <p class="color-text-2">{{ page.description }}</p>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Posts -->
+<section class="padding-block-end-double">
+  <div class="width-prose margin-inline-auto padding-inline-half">
+    {% assign posts = paginator.posts | default: site.posts %}
+    {% for post in posts %}
+      <article class="margin-block-end-double">
+        <p class="label margin-block-end-half">{{ post.date | date: "%b %-d, %Y" }}</p>
+        <h2 class="font-family-serif font-size-2xl line-height-snug margin-block-end-half">
+          <a href="{{ post.url | relative_url }}" class="color-text-1 transition">{{ post.title }}</a>
+        </h2>
+        {% if post.excerpt %}
+        <p class="color-text-2 line-clamp-3 margin-block-end-half">{{ post.excerpt | strip_html | truncate: 250 }}</p>
+        {% endif %}
+        <a href="{{ post.url | relative_url }}" class="link font-size-sm uppercase letter-spacing-wider font-weight-semibold">
+          Read more &rarr;
+        </a>
+      </article>
+      {% unless forloop.last %}<hr class="divider">{% endunless %}
+    {% endfor %}
+
+    <!-- Pagination -->
+    {% if paginator.total_pages > 1 %}
+    <nav class="flex justify-between align-items-center margin-block-start-double padding-block-start border-block-start" aria-label="Pagination">
+      {% if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path | relative_url }}" class="link font-size-sm">&larr; Previous</a>
+      {% else %}<span></span>{% endif %}
+      <span class="color-accent font-weight-bold">{{ paginator.page }}</span>
+      {% if paginator.next_page %}
+      <a href="{{ paginator.next_page_path | relative_url }}" class="link font-size-sm">Next &rarr;</a>
+      {% else %}<span></span>{% endif %}
+    </nav>
+    {% endif %}
+  </div>
+</section>

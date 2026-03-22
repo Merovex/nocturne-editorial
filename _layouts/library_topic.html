@@ -1,0 +1,54 @@
+---
+layout: default
+---
+
+<article class="padding-block-double">
+  <div class="width-wide margin-inline-auto padding-inline-half">
+    <!-- Hero -->
+    <div class="flex flex-column sm:flex-row gap-xl align-items-start margin-block-end">
+      {% if page.cover_image %}
+      <div style="flex: 0 0 180px;">
+        <img src="{{ page.cover_image | relative_url }}" alt="{{ page.title }} cover"
+             class="width-full border-radius-md border" loading="lazy">
+      </div>
+      {% endif %}
+      <div>
+        <h1 class="font-family-serif font-size-4xl line-height-tight margin-block-end-half">{{ page.title }}</h1>
+        {% if page.subtitle %}
+        <p class="color-text-2 font-size-lg margin-block-end-half">{{ page.subtitle }}</p>
+        {% endif %}
+        <div class="flex gap-md font-size-sm color-text-2">
+          {% if page.category %}<span class="chip">{{ page.category }}</span>{% endif %}
+          {% if page.note_count %}<span>{{ page.note_count }} notes</span>{% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="width-prose margin-inline-auto prose margin-block-end-double">
+      {{ content }}
+    </div>
+
+    <!-- Notes list -->
+    {% assign topic_folder = page.url | split: '/' | slice: 1, 3 | join: '/' %}
+    {% assign notes = site.pages | where_exp: "page", "page.url contains topic_folder" | where_exp: "page", "page.layout == 'library_note'" | sort: "order" %}
+    {% if notes.size > 0 %}
+    <section class="width-prose margin-inline-auto">
+      <h2 class="font-family-serif font-size-2xl margin-block-end-half">Notes</h2>
+      <ol class="flex flex-column gap-sm" style="list-style: decimal; padding-inline-start: var(--space-lg);">
+        {% for note in notes %}
+        <li>
+          <a href="{{ note.url | relative_url }}" class="link">{{ note.title }}</a>
+        </li>
+        {% endfor %}
+      </ol>
+    </section>
+    {% else %}
+    <p class="color-text-2 text-align-center">No notes available yet.</p>
+    {% endif %}
+
+    <nav class="width-prose margin-inline-auto margin-block-start padding-block-start border-block-start">
+      <a href="{{ '/library/' | relative_url }}" class="link font-size-sm">&larr; Back to Library</a>
+    </nav>
+  </div>
+</article>

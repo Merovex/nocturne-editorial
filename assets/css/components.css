@@ -51,14 +51,13 @@
 /* --- Link with hover underline --- */
 .link {
   color: var(--link-color);
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
   transition: color 200ms ease;
 }
 
 .link:hover {
   color: var(--link-hover-color);
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
 }
 
 /* --- Card base --- */

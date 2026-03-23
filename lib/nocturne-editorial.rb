@@ -20,18 +20,20 @@ module Nocturne
         roots << site.source
 
         roots.each do |root|
-          css_dir = File.join(root, "assets", "css")
-          next unless Dir.exist?(css_dir)
+          %w[css js].each do |ext|
+            asset_dir = File.join(root, "assets", ext)
+            next unless Dir.exist?(asset_dir)
 
-          Dir.glob(File.join(css_dir, "**", "*.css")).each do |file|
-            relative_path = file.sub(root, "")
-            digest = Digest::MD5.hexdigest(File.read(file))[0..7]
-            fingerprints[relative_path] = digest
+            Dir.glob(File.join(asset_dir, "**", "*.#{ext}")).each do |file|
+              relative_path = file.sub(root, "")
+              digest = Digest::MD5.hexdigest(File.read(file))[0..7]
+              fingerprints[relative_path] = digest
+            end
           end
         end
 
         site.data["fingerprints"] = fingerprints
-        Jekyll.logger.info "NocturneEditorial:", "Generated #{fingerprints.size} CSS fingerprints"
+        Jekyll.logger.info "NocturneEditorial:", "Generated #{fingerprints.size} asset fingerprints"
       end
     end
 

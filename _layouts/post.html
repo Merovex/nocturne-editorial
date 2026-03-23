@@ -5,12 +5,27 @@ layout: default
 
 <article class="padding-block-double">
   <!-- Header -->
-  <header class="width-prose margin-inline-auto padding-inline-half margin-block-end">
-    <p class="label margin-block-end-half">{{ page.date | date: "%B %-d, %Y" }}</p>
-    <h1 class="font-family-serif font-size-4xl line-height-tight margin-block-end-half">{{ page.title }}</h1>
-    {% if author_data %}
-    <p class="color-text-2">by {{ author_data.name }}</p>
-    {% endif %}
+  <header class="width-prose margin-inline-auto padding-inline-half margin-block-end-half">
+    <h1 class="font-family-serif txt-xx-large line-height-tight margin-block-end-half">{{ page.title }}</h1>
+    <div class="post-meta">
+      {% if author_data %}
+      {% assign avatar = author_data.avatar | default: author_data.photo %}
+      <div class="post-meta-author">
+        {% if avatar %}
+        <img src="{{ avatar | relative_url }}" alt="{{ author_data.name }}" class="post-meta-avatar" loading="lazy">
+        {% endif %}
+        <div>
+          <span class="color-text-1 font-weight-semibold txt-small">{{ author_data.name }}</span>
+          {% if author_data.role %}<br><span class="color-text-2 txt-x-small">{{ author_data.role }}</span>{% endif %}
+        </div>
+      </div>
+      {% endif %}
+      <span class="post-meta-item color-text-2 txt-x-small"><span class="post-meta-icon">{% include icons/calendar.svg %}</span> {{ page.date | date: "%B %-d, %Y" }}</span>
+      {% assign words = content | number_of_words %}
+      {% assign minutes = words | divided_by: 250 %}
+      {% if minutes < 1 %}{% assign minutes = 1 %}{% endif %}
+      <span class="post-meta-item color-text-2 txt-x-small"><span class="post-meta-icon">{% include icons/clock.svg %}</span> {{ minutes }} min read</span>
+    </div>
   </header>
 
   <!-- Body -->
@@ -21,14 +36,14 @@ layout: default
 
 <!-- Prev/Next post -->
 {% if page.previous or page.next %}
-<nav class="width-prose margin-inline-auto padding-inline-half padding-block flex justify-between border-block-start" aria-label="Post navigation">
+<nav class="width-prose margin-inline-auto padding-inline-half padding-block flex justify-between border-block-start"
+  aria-label="Post navigation">
   {% if page.previous %}
-  <a href="{{ page.previous.url | relative_url }}" class="link font-size-sm">&larr; {{ page.previous.title | truncate: 40 }}</a>
+  <a href="{{ page.previous.url | relative_url }}" class="link txt-small">&larr; {{ page.previous.title | truncate: 40
+    }}</a>
   {% else %}<span></span>{% endif %}
   {% if page.next %}
-  <a href="{{ page.next.url | relative_url }}" class="link font-size-sm">{{ page.next.title | truncate: 40 }} &rarr;</a>
+  <a href="{{ page.next.url | relative_url }}" class="link txt-small">{{ page.next.title | truncate: 40 }} &rarr;</a>
   {% else %}<span></span>{% endif %}
 </nav>
 {% endif %}
-
-{% include newsletter-signup.html headline="Join the Fleet" %}

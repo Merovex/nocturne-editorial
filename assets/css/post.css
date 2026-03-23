@@ -1,0 +1,40 @@
+/* ===================================================
+   Post — Blog post header metadata
+   =================================================== */
+
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.post-meta-author {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.post-meta-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.post-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.post-meta-icon {
+  display: inline-flex;
+  width: 14px;
+  height: 14px;
+}
+
+.post-meta-icon svg {
+  width: 100%;
+  height: 100%;
+}

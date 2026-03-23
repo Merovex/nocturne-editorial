@@ -1,20 +1,24 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}" data-theme="dark" data-controller="theme">
+<html lang="{{ page.lang | default: site.lang | default: " en" }}" data-theme="dark" data-controller="theme">
+
 <head>
   {% include head.html %}
 </head>
+
 <body class="background-surface-0 color-text-1">
   <a href="#main-content" class="screen-reader-only">Skip to main content</a>
 
-  <main id="main-content" class="width-prose margin-inline-auto padding-inline-half padding-block-double text-align-center">
+  <main id="main-content"
+    class="width-prose margin-inline-auto padding-inline-half padding-block-double text-align-center">
     {% if page.headline %}
-    <h1 class="font-family-serif font-size-4xl sm:font-size-5xl line-height-tight margin-block-end-half">{{ page.headline }}</h1>
+    <h1 class="font-family-serif txt-xx-large sm:txt-xxx-large line-height-tight margin-block-end-half">{{ page.headline
+      }}</h1>
     {% endif %}
 
     {% if site.magnets.size > 0 %}
     <div class="flex flex-wrap justify-center gap-xl margin-block-end">
       {% for magnet in site.magnets %}
-        {% include book-card.html book=magnet %}
+      {% include book-card.html book=magnet %}
       {% endfor %}
     </div>
     {% endif %}
@@ -24,18 +28,21 @@
       {{ content }}
     </div>
     {% endif %}
-
-    {% include newsletter-field.html tag=page.buttondown_tag metadata_source=page.buttondown_metadata_source %}
+    <div
+      class="text-align-center padding margin-block size-content-2 background-surface-2 border-radius-md margin-inline-auto">
+      {% include newsletter-field.html tag=page.buttondown_tag metadata_source=page.buttondown_metadata_source %}
+    </div>
 
     {% if page.trust_line %}
-    <p class="color-text-2 font-size-sm margin-block-start-half">{{ page.trust_line }}</p>
+    <p class="color-text-2 txt-small margin-block-start-half">{{ page.trust_line }}</p>
     {% endif %}
 
     {% if page.show_count and page.subscriber_count > 100 %}
-    <p class="color-text-3 font-size-sm margin-block-start-half">Join {{ page.subscriber_count }} readers.</p>
+    <p class="color-text-3 txt-small margin-block-start-half">Join {{ page.subscriber_count }} readers.</p>
     {% endif %}
   </main>
 
   <script type="module" src="{{ '/assets/js/app.js' | relative_url }}"></script>
 </body>
+
 </html>

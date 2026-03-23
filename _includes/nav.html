@@ -1,44 +1,47 @@
-<nav class="sticky top-0 z-index-50 background-surface-2 border-block-end" aria-label="Main navigation" data-controller="nav">
-  <div class="flex align-items-center justify-between width-wide margin-inline-auto padding-inline-half padding-block-half">
+<nav class="sticky top-0 z-index-50 background-surface-1 border-block-end" aria-label="Main navigation"
+  data-controller="nav">
+  <div
+    class="flex align-items-center justify-between width-wide margin-inline-auto padding-inline-half padding-block-half">
     <!-- Site title -->
-    <a href="{{ "/" | relative_url }}" class="flex align-items-center gap-sm color-text-1" aria-label="{{ site.title }} home">
+    <a href="{{ "/" | relative_url }}" class="flex align-items-center gap-sm color-text-1"
+      aria-label="{{ site.title }} home">
       <span style="width: 32px; height: 32px;">{% include mark.svg %}</span>
-      <span class="uppercase letter-spacing-wider font-family-sans font-weight-bold font-size-sm">{{ site.title }}</span>
+      <span class="uppercase letter-spacing-wider font-family-sans font-weight-bold txt-small">{{ site.title }}</span>
     </a>
 
     <!-- Nav links (desktop) -->
     <div class="nav-links hidden sm:flex gap-lg align-items-center">
       {% if site.data.navigation %}
-        {% for item in site.data.navigation %}
-          <a href="{{ item.url | relative_url }}"
-             class="uppercase font-size-xs letter-spacing-wider transition {% if page.url == item.url %}color-accent{% else %}color-text-2{% endif %}"
-             {% if page.url == item.url %}aria-current="page"{% endif %}>
-            {{ item.title }}
-          </a>
-        {% endfor %}
+      {% for item in site.data.navigation %}
+      <a href="{{ item.url | relative_url }}"
+        class="uppercase txt-x-small letter-spacing-wider transition {% if page.url == item.url %}color-accent{% else %}color-text-2{% endif %}"
+        {% if page.url==item.url %}aria-current="page" {% endif %}>
+        {{ item.title }}
+      </a>
+      {% endfor %}
       {% else %}
-        {% assign nav_items = "Home:/,Books:/books/,Blog:/blog/,About:/about/" | split: "," %}
-        {% for item in nav_items %}
-          {% assign parts = item | split: ":" %}
-          <a href="{{ parts[1] | relative_url }}"
-             class="uppercase font-size-xs letter-spacing-wider transition {% if page.url == parts[1] %}color-accent{% else %}color-text-2{% endif %}"
-             {% if page.url == parts[1] %}aria-current="page"{% endif %}>
-            {{ parts[0] }}
-          </a>
-        {% endfor %}
+      {% assign nav_items = "Home:/,Books:/books/,Blog:/blog/,About:/about/" | split: "," %}
+      {% for item in nav_items %}
+      {% assign parts = item | split: ":" %}
+      <a href="{{ parts[1] | relative_url }}"
+        class="uppercase txt-x-small letter-spacing-wider transition {% if page.url == parts[1] %}color-accent{% else %}color-text-2{% endif %}"
+        {% if page.url==parts[1] %}aria-current="page" {% endif %}>
+        {{ parts[0] }}
+      </a>
+      {% endfor %}
       {% endif %}
     </div>
 
     <div class="flex align-items-center gap-md">
       <!-- CTA button (desktop) -->
       <a href="{{ site.newsletter_url | default: "/newsletter/" | relative_url }}"
-         class="btn btn-primary font-size-xs hidden sm:inline-flex">
+        class="btn btn-primary txt-x-small hidden sm:inline-flex" target="_blank">
         {{ site.newsletter_cta | default: "GET FREE BOOK" }}
       </a>
 
       <!-- Hamburger (mobile) -->
-      <button class="hamburger sm:hidden" aria-label="Toggle menu" aria-expanded="false"
-              data-nav-target="hamburger" data-action="click->nav#toggle">
+      <button class="hamburger sm:hidden" aria-label="Toggle menu" aria-expanded="false" data-nav-target="hamburger"
+        data-action="click->nav#toggle">
         <span class="hamburger-bar"></span>
         <span class="hamburger-bar"></span>
         <span class="hamburger-bar"></span>
@@ -47,26 +50,27 @@
   </div>
 
   <!-- Mobile menu -->
-  <div class="nav-mobile hidden flex-column gap-md padding-inline-half padding-block-half background-surface-2 border-block-start" data-nav-target="mobile">
+  <div
+    class="nav-mobile hidden flex-column gap-md padding-inline-half padding-block-half background-surface-2 border-block-start"
+    data-nav-target="mobile">
     {% if site.data.navigation %}
-      {% for item in site.data.navigation %}
-        <a href="{{ item.url | relative_url }}"
-           class="uppercase font-size-sm letter-spacing-wider transition {% if page.url == item.url %}color-accent{% else %}color-text-2{% endif %}">
-          {{ item.title }}
-        </a>
-      {% endfor %}
+    {% for item in site.data.navigation %}
+    <a href="{{ item.url | relative_url }}"
+      class="uppercase txt-small letter-spacing-wider transition {% if page.url == item.url %}color-accent{% else %}color-text-2{% endif %}">
+      {{ item.title }}
+    </a>
+    {% endfor %}
     {% else %}
-      {% assign nav_items = "Home:/,Books:/books/,Blog:/blog/,About:/about/" | split: "," %}
-      {% for item in nav_items %}
-        {% assign parts = item | split: ":" %}
-        <a href="{{ parts[1] | relative_url }}"
-           class="uppercase font-size-sm letter-spacing-wider transition {% if page.url == parts[1] %}color-accent{% else %}color-text-2{% endif %}">
-          {{ parts[0] }}
-        </a>
-      {% endfor %}
+    {% assign nav_items = "Home:/,Books:/books/,Blog:/blog/,About:/about/" | split: "," %}
+    {% for item in nav_items %}
+    {% assign parts = item | split: ":" %}
+    <a href="{{ parts[1] | relative_url }}"
+      class="uppercase txt-small letter-spacing-wider transition {% if page.url == parts[1] %}color-accent{% else %}color-text-2{% endif %}">
+      {{ parts[0] }}
+    </a>
+    {% endfor %}
     {% endif %}
-    <a href="{{ site.newsletter_url | default: "/newsletter/" | relative_url }}"
-       class="btn btn-primary font-size-xs">
+    <a href="{{ site.newsletter_url | default: "/newsletter/" | relative_url }}" class="btn btn-primary txt-x-small">
       {{ site.newsletter_cta | default: "GET FREE BOOK" }}
     </a>
   </div>

@@ -2,10 +2,10 @@
 
 <article class="card padding-half flex flex-column gap-sm">
   <p class="label">{{ post.date | date: "%B %-d, %Y" }}</p>
-  <h3 class="font-family-serif font-size-xl line-height-snug">
+  <h3 class="font-family-serif txt-large line-height-snug">
     <a href="{{ post.url | relative_url }}" class="color-text-1 transition">{{ post.title }}</a>
   </h3>
   {% if post.excerpt %}
-  <p class="color-text-2 font-size-sm line-clamp-2">{{ post.excerpt | strip_html | truncate: 160 }}</p>
+  <p class="color-text-2 txt-small line-clamp-2">{{ post.excerpt | strip_html | truncate: 160 }}</p>
   {% endif %}
 </article>

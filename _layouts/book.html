@@ -9,15 +9,15 @@ layout: default
 {% assign prev_book = nil %}
 {% assign next_book = nil %}
 {% for book in sorted_books %}
-  {% if book.series_order == page.series_order %}
-    {% assign idx = forloop.index0 %}
-  {% endif %}
+{% if book.series_order == page.series_order %}
+{% assign idx = forloop.index0 %}
+{% endif %}
 {% endfor %}
 {% for book in sorted_books %}
-  {% assign check = forloop.index0 | plus: 1 %}
-  {% if check == idx %}{% assign prev_book = book %}{% endif %}
-  {% assign check2 = idx | plus: 1 %}
-  {% if forloop.index0 == check2 %}{% assign next_book = book %}{% endif %}
+{% assign check = forloop.index0 | plus: 1 %}
+{% if check == idx %}{% assign prev_book = book %}{% endif %}
+{% assign check2 = idx | plus: 1 %}
+{% if forloop.index0 == check2 %}{% assign next_book = book %}{% endif %}
 {% endfor %}
 
 <!-- Header -->
@@ -26,16 +26,17 @@ layout: default
     {% if page.cover_image %}
     <div style="flex: 0 0 300px;">
       <img src="{{ page.cover_image | relative_url }}" alt="{{ page.title }} cover"
-           class="width-full aspect-ratio-book object-fit-cover border-radius-md border">
+        class="width-full aspect-ratio-book object-fit-cover border-radius-md border">
     </div>
     {% endif %}
     <div class="flex flex-column gap-md flex-grow">
       {% if series_data %}
       <p class="label">{{ series_data.name }} &middot; Book {{ page.series_order }}</p>
       {% endif %}
-      <h1 class="font-family-serif font-size-4xl line-height-tight">{{ page.title }}</h1>
+      <h1 class="font-family-serif txt-xx-large line-height-tight">{{ page.title }}</h1>
       {% if author_data %}
-      <p class="color-text-2">by <a href="{{ "/authors/" | append: author_data.slug | append: "/" | relative_url }}" class="link">{{ author_data.name }}</a></p>
+      <p class="color-text-2">by <a href="{{ " /authors/" | append: author_data.slug | append: "/" | relative_url }}"
+          class="link">{{ author_data.name }}</a></p>
       {% endif %}
 
       <!-- Buy buttons -->
@@ -58,13 +59,13 @@ layout: default
       {% endif %}
 
       <!-- Metadata -->
-      <div class="flex flex-wrap gap-lg margin-block-start-half font-size-sm color-text-2">
+      <div class="flex flex-wrap gap-lg margin-block-start-half txt-small color-text-2">
         {% if page.page_count %}<span>{{ page.page_count }} pages</span>{% endif %}
         {% if page.pub_date %}<span>{{ page.pub_date | date: "%B %Y" }}</span>{% endif %}
         {% if page.genres %}
-          {% for genre in page.genres %}
-          <span class="chip">{{ genre }}</span>
-          {% endfor %}
+        {% for genre in page.genres %}
+        <span class="chip">{{ genre }}</span>
+        {% endfor %}
         {% endif %}
       </div>
     </div>
@@ -73,24 +74,26 @@ layout: default
 
 <!-- Prev/Next in series -->
 {% if prev_book or next_book %}
-<nav class="background-surface-2 border-block-start border-block-end" aria-label="Series navigation">
-  <div class="width-wide margin-inline-auto padding-inline-half padding-block-half flex justify-between align-items-center">
+<nav class="background-surface-1 border-block-start border-block-end" aria-label="Series navigation">
+  <div
+    class="width-wide margin-inline-auto padding-inline-half padding-block-half flex justify-between align-items-center">
     {% if prev_book %}
     <a href="{{ prev_book.url | relative_url }}" class="flex align-items-center gap-sm color-text-2 transition">
-      <span class="font-size-xl">&larr;</span>
+      <span class="txt-large">&larr;</span>
       <span>
         <span class="label">Previous in Series</span><br>
-        <span class="font-family-serif font-size-lg color-text-1">{{ prev_book.title }}</span>
+        <span class="font-family-serif txt-large color-text-1">{{ prev_book.title }}</span>
       </span>
     </a>
     {% else %}<span></span>{% endif %}
     {% if next_book %}
-    <a href="{{ next_book.url | relative_url }}" class="flex align-items-center gap-sm color-text-2 transition text-align-right">
+    <a href="{{ next_book.url | relative_url }}"
+      class="flex align-items-center gap-sm color-text-2 transition text-align-right">
       <span>
         <span class="label">Next in Series</span><br>
-        <span class="font-family-serif font-size-lg color-text-1">{{ next_book.title }}</span>
+        <span class="font-family-serif txt-large color-text-1">{{ next_book.title }}</span>
       </span>
-      <span class="font-size-xl">&rarr;</span>
+      <span class="txt-large">&rarr;</span>
     </a>
     {% else %}<span></span>{% endif %}
   </div>
@@ -110,17 +113,15 @@ layout: default
 {% if series_books.size > 1 %}
 <section class="padding-block-double">
   <div class="width-wide margin-inline-auto padding-inline-half">
-    <h2 class="font-family-serif font-size-2xl margin-block-end text-align-center">Also in {{ series_data.name }}</h2>
+    <h2 class="font-family-serif txt-x-large margin-block-end text-align-center">Also in {{ series_data.name }}</h2>
     <div class="flex flex-wrap justify-center gap-xl">
       {% for book in series_books %}
-        {% unless book.url == page.url %}
-          {% include book-card.html book=book %}
-        {% endunless %}
+      {% unless book.url == page.url %}
+      {% include book-card.html book=book %}
+      {% endunless %}
       {% endfor %}
     </div>
   </div>
 </section>
 {% endif %}
 {% endif %}
-
-{% include newsletter-signup.html headline="Secure Your Transmission" %}

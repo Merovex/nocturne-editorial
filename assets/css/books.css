@@ -65,7 +65,7 @@ a.book-card {
   padding: 1.5rem;
   text-align: center;
   font-family: var(--font-serif);
-  font-size: var(--text-xl);
+  font-size: var(--txt-large);
   color: var(--text-2);
 }
 

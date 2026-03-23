@@ -3,6 +3,9 @@
    =================================================== */
 
 :root {
+  --size-content-1: 20ch;   /* labels, card titles, compact elements */
+  --size-content-2: 60ch;   /* prose, blog posts, book blurbs */
+  --size-content-3: 90ch;   /* wide layouts: book grids, homepage sections */
   /* --- syo-ro (primary accent, teal-green) --- */
   --color-syo-ro-50:  oklch(97.63% 0.00408 158.604);
   --color-syo-ro-100: oklch(92.46% 0.01287 172.808);
@@ -53,24 +56,22 @@
   --space-4xl: 6rem;
 
   /* --- Type scale --- */
-  --text-xs:   0.75rem;
-  --text-sm:   0.875rem;
-  --text-base: 19px;
-  --text-lg:   1.125rem;
-  --text-xl:   1.25rem;
-  --text-2xl:  1.5rem;
-  --text-3xl:  1.875rem;
-  --text-4xl:  2.25rem;
-  --text-5xl:  3rem;
+  --txt-x-small:   0.75rem;
+  --txt-small:     0.875rem;
+  --txt-normal:    1rem;
+  --txt-large:     1.3rem;
+  --txt-x-large:   1.6rem;
+  --txt-xx-large:  2.1rem;
+  --txt-xxx-large: 3rem;
 
   /* --- Widths --- */
   --w-prose: 720px;
   --w-wide:  1100px;
 
   /* --- Fonts --- */
-  --font-serif: "Alegreya", Georgia, serif;
+  --font-serif: "Source Serif 4", Georgia, serif;
   --font-sans:  "Source Sans 3", system-ui, sans-serif;
-  --font-mono:  "JetBrains Mono", "Source Code Pro", monospace;
+  --font-mono:  "Source Code Pro", monospace;
 
   /* --- Misc --- */
   --radius-sm: 0.25rem;
@@ -101,8 +102,8 @@
 /* --- Semantic Tokens: Dark Mode --- */
 [data-theme="dark"] {
   --surface-0: var(--color-mountain-mist-950);
-  --surface-1: var(--color-mountain-mist-900);
-  --surface-2: var(--color-mountain-mist-800);
+  --surface-1: var(--color-syo-ro-950);
+  --surface-2: var(--color-syo-ro-900);
   --surface-3: var(--color-mountain-mist-700);
   --border-1:  var(--color-mountain-mist-700);
   --border-2:  var(--color-mountain-mist-600);

@@ -10,11 +10,10 @@
   .sm\:block       { display: block; }
   .sm\:flex        { display: flex; }
   .sm\:inline-flex { display: inline-flex; }
-  .sm\:font-size-lg  { font-size: var(--text-lg); }
-  .sm\:font-size-xl  { font-size: var(--text-xl); }
-  .sm\:font-size-3xl { font-size: var(--text-3xl); }
-  .sm\:font-size-4xl { font-size: var(--text-4xl); }
-  .sm\:font-size-5xl { font-size: var(--text-5xl); }
+  .sm\:txt-large     { font-size: var(--txt-large); }
+  .sm\:txt-x-large   { font-size: var(--txt-x-large); }
+  .sm\:txt-xx-large  { font-size: var(--txt-xx-large); }
+  .sm\:txt-xxx-large { font-size: var(--txt-xxx-large); }
   .sm\:gap-lg { gap: var(--space-lg); }
   .sm\:gap-xl { gap: var(--space-xl); }
   .sm\:padding-inline { padding-inline: var(--space-2xl); }
@@ -27,8 +26,8 @@
   .lg\:hidden      { display: none; }
   .lg\:block       { display: block; }
   .lg\:flex        { display: flex; }
-  .lg\:font-size-4xl { font-size: var(--text-4xl); }
-  .lg\:font-size-5xl { font-size: var(--text-5xl); }
+  .lg\:txt-xx-large  { font-size: var(--txt-xx-large); }
+  .lg\:txt-xxx-large { font-size: var(--txt-xxx-large); }
   .lg\:gap-xl  { gap: var(--space-xl); }
   .lg\:gap-2xl { gap: var(--space-2xl); }
   .lg\:padding-inline { padding-inline: var(--space-2xl); }

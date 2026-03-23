@@ -15,7 +15,7 @@ layout: default
            class="border-radius-full object-fit-cover" style="width: 150px; height: 150px;" loading="lazy">
       {% endif %}
       <div>
-        <h1 class="font-family-serif font-size-4xl line-height-tight margin-block-end-half">{{ author.name | default: page.title }}</h1>
+        <h1 class="font-family-serif txt-xx-large line-height-tight margin-block-end-half">{{ author.name | default: page.title }}</h1>
         {% if author.genres %}
         <p class="label margin-block-end-half">{{ author.genres | join: " · " }}</p>
         {% endif %}
@@ -34,7 +34,7 @@ layout: default
     <!-- Their books -->
     {% assign author_books = site.books | where: "author", author_key %}
     {% if author_books.size > 0 %}
-    <h2 class="font-family-serif font-size-2xl margin-block-end text-align-center">Books by {{ author.name | default: page.title }}</h2>
+    <h2 class="font-family-serif txt-x-large margin-block-end text-align-center">Books by {{ author.name | default: page.title }}</h2>
     <div class="grid grid-columns-1 sm:grid-columns-2 lg:grid-columns-3 gap-xl">
       {% for book in author_books %}
         {% include book-card.html book=book %}

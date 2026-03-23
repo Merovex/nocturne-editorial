@@ -2,21 +2,21 @@
 {% assign key = include.key %}
 {% assign avatar = author.avatar | default: author.photo %}
 
-<div class="card padding-half flex flex-column sm:flex-row gap-lg align-items-center">
-  {% if avatar %}
-  <img src="{{ avatar | relative_url }}" alt="{{ author.name }}"
-       class="border-radius-full object-fit-cover" style="width: 100px; height: 100px;" loading="lazy">
-  {% endif %}
-  <div class="flex flex-column gap-xs {% if avatar %}text-align-left{% else %}text-align-center{% endif %}">
-    <h3 class="font-family-serif font-size-xl">{{ author.name }}</h3>
-    {% if author.genres %}
-    <p class="label">{{ author.genres | join: " · " }}</p>
-    {% endif %}
-    {% if author.quote %}
-    <p class="color-text-2 font-size-sm font-style-italic">&ldquo;{{ author.quote }}&rdquo;</p>
-    {% endif %}
-    <a href="{{ author.url | default: "/authors/" | append: key | append: "/" | relative_url }}" class="link font-size-sm uppercase letter-spacing-wider font-weight-semibold margin-block-start-half">
-      Read more &rarr;
-    </a>
+<div class="author-card">
+  {% if author.icon %}
+  <div class="author-card-icon">
+    <img src="{{ author.icon | relative_url }}" alt="" loading="lazy">
   </div>
+  {% elsif avatar %}
+  <div class="author-card-icon">
+    <img src="{{ avatar | relative_url }}" alt="{{ author.name }}" class="border-radius-full object-fit-cover" loading="lazy">
+  </div>
+  {% endif %}
+  <h3 class="font-family-serif txt-large">{{ author.name }}</h3>
+  {% if author.genres %}
+  <p class="author-card-genres">{{ author.genres | join: " & " | upcase }}</p>
+  {% endif %}
+  {% if author.quote %}
+  <p class="author-card-quote">&ldquo;{{ author.quote }}&rdquo;</p>
+  {% endif %}
 </div>

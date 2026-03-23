@@ -4,18 +4,17 @@
 
 <a href="{{ "/books/" | relative_url }}#{{ key }}" class="book-card">
   {% if start_book and start_book.cover_image %}
-  <img src="{{ start_book.cover_image | relative_url }}" alt="{{ series.name }} series cover"
-       class="book-card-cover" loading="lazy">
+  <img src="{{ start_book.cover_image | relative_url }}" alt="{{ series.name }} series cover" class="book-card-cover"
+    loading="lazy">
   {% else %}
   <div class="book-card-placeholder">
     <span>{{ series.name }}</span>
   </div>
   {% endif %}
   <div class="book-card-body">
-    <p class="label">Series</p>
-    <h3 class="font-family-serif font-size-lg">{{ series.name }}</h3>
-    <p class="color-text-2 font-size-sm line-clamp-2">{{ series.tagline }}</p>
-    <span class="link font-size-xs uppercase letter-spacing-wider font-weight-semibold margin-block-start-half">
+    <h3 class="font-family-serif txt-large">{{ series.name }}</h3>
+    <p class="color-text-2 txt-small line-clamp-3">{{ series.tagline }}</p>
+    <span class="link txt-x-small uppercase letter-spacing-wider font-weight-semibold margin-block-start-half">
       Explore &rarr;
     </span>
   </div>

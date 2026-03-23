@@ -1,13 +1,13 @@
-{% include newsletter-signup.html %}
+{% include newsletter-cta.html %}
 
 <footer class="border-block-start padding-block-double">
   <div class="width-wide margin-inline-auto padding-inline-half text-align-center">
     <div class="color-text-2" style="width: 40px; margin-inline: auto; margin-block-end: var(--space-lg);">
       {% include mark.svg %}
     </div>
-    <p class="color-text-2 font-size-sm">
+    <p class="color-text-2 txt-small">
       &copy; {{ 'now' | date: "%Y" }} {{ site.title }}.
-      <a href="{{ "/feed.xml" | relative_url }}" class="link font-size-sm">RSS Feed</a>
+      <a href="{{ "/feed.xml" | relative_url }}" class="link txt-small">RSS Feed</a>
     </p>
   </div>
 </footer>

@@ -3,31 +3,24 @@ layout: default
 ---
 
 <!-- Hero -->
-<section class="padding-block-double text-align-center">
-  <div class="width-wide margin-inline-auto padding-inline-half">
-    {% if site.tagline_prefix %}
-    <p class="label margin-block-end-half">{{ site.tagline_prefix }}</p>
-    {% endif %}
-    <h1 class="font-family-serif font-size-4xl sm:font-size-5xl line-height-tight margin-block-end-half">{{ page.headline | default: site.description }}</h1>
-    {% if page.description %}
-    <p class="color-text-2 font-size-lg margin-block-end width-prose margin-inline-auto">{{ page.description }}</p>
-    {% endif %}
-    <a href="{{ site.newsletter_url | default: "/newsletter/" | relative_url }}" class="btn btn-primary">
-      {{ site.newsletter_cta | default: "GET FREE BOOK" }}
-    </a>
-  </div>
+<section class="hero">
+  <h1 class="hero-headline font-family-serif">{{ page.headline | default: site.title }}</h1>
+  {% if page.description %}
+  <p class="hero-description">{{ page.description | default: site.description }}</p>
+  {% endif %}
+  {% include newsletter-field.html %}
 </section>
 
 <!-- Series Showcase -->
 {% if site.data.series %}
 <section class="padding-block-double">
   <div class="width-wide margin-inline-auto padding-inline-half">
-    <h2 class="font-family-serif font-size-3xl text-align-center margin-block-end">Our Series</h2>
+    <h2 class="font-family-serif txt-x-large text-align-center margin-block-end">Our Series</h2>
     <div class="flex flex-wrap justify-center gap-xl">
       {% for s in site.data.series %}
-        {% assign s_key = s[0] %}
-        {% assign s_data = s[1] %}
-        {% include series-card.html key=s_key series=s_data %}
+      {% assign s_key = s[0] %}
+      {% assign s_data = s[1] %}
+      {% include series-card.html key=s_key series=s_data %}
       {% endfor %}
     </div>
   </div>
@@ -36,14 +29,20 @@ layout: default
 
 <!-- Authors -->
 {% if site.data.authors %}
-<section class="padding-block-double">
-  <div class="width-wide margin-inline-auto padding-inline-half">
-    <h2 class="font-family-serif font-size-3xl text-align-center margin-block-end">The Authors</h2>
-    <div class="grid grid-columns-1 sm:grid-columns-2 gap-xl">
+<section class="padding-block-double background-surface-1">
+  <div class="width-wide margin-inline-auto padding-inline-half text-align-center">
+    {% if page.authors_label %}
+    <p class="label color-accent margin-block-end-half">{{ page.authors_label }}</p>
+    {% endif %}
+    <h2 class="font-family-serif txt-xx-large margin-block-end-half">{{ page.authors_headline | default: "The Authors" }}</h2>
+    {% if page.authors_description %}
+    <p class="color-text-2 width-prose margin-inline-auto margin-block-end">{{ page.authors_description }}</p>
+    {% endif %}
+    <div class="author-duo">
       {% for a in site.data.authors %}
-        {% assign a_key = a[0] %}
-        {% assign a_data = a[1] %}
-        {% include author-card.html key=a_key author=a_data %}
+      {% assign a_key = a[0] %}
+      {% assign a_data = a[1] %}
+      {% include author-card.html key=a_key author=a_data %}
       {% endfor %}
     </div>
   </div>
@@ -55,20 +54,16 @@ layout: default
 {% if recent_posts.size > 0 %}
 <section class="padding-block-double">
   <div class="width-wide margin-inline-auto padding-inline-half">
-    <h2 class="font-family-serif font-size-3xl text-align-center margin-block-end">Latest from the Archive</h2>
+    <h2 class="font-family-serif txt-x-large text-align-center margin-block-end">Latest from the Archive</h2>
     <div class="grid grid-columns-1 sm:grid-columns-2 lg:grid-columns-3 gap-xl">
       {% for post in recent_posts %}
-        {% include post-card.html post=post %}
+      {% include post-card.html post=post %}
       {% endfor %}
     </div>
     <div class="text-align-center margin-block-start">
-      <a href="{{ "/blog/" | relative_url }}" class="link font-weight-semibold uppercase font-size-sm letter-spacing-wider">View all &rarr;</a>
+      <a href="{{ " /blog/" | relative_url }}"
+        class="link font-weight-semibold uppercase txt-small letter-spacing-wider">View all &rarr;</a>
     </div>
   </div>
 </section>
 {% endif %}
-
-<!-- Footer CTA -->
-<section class="background-surface-1">
-  {% include newsletter-signup.html headline="Don't Get Left Behind" %}
-</section>

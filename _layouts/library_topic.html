@@ -13,11 +13,11 @@ layout: default
       </div>
       {% endif %}
       <div>
-        <h1 class="font-family-serif font-size-4xl line-height-tight margin-block-end-half">{{ page.title }}</h1>
+        <h1 class="font-family-serif txt-xx-large line-height-tight margin-block-end-half">{{ page.title }}</h1>
         {% if page.subtitle %}
-        <p class="color-text-2 font-size-lg margin-block-end-half">{{ page.subtitle }}</p>
+        <p class="color-text-2 txt-large margin-block-end-half">{{ page.subtitle }}</p>
         {% endif %}
-        <div class="flex gap-md font-size-sm color-text-2">
+        <div class="flex gap-md txt-small color-text-2">
           {% if page.category %}<span class="chip">{{ page.category }}</span>{% endif %}
           {% if page.note_count %}<span>{{ page.note_count }} notes</span>{% endif %}
         </div>
@@ -34,7 +34,7 @@ layout: default
     {% assign notes = site.pages | where_exp: "page", "page.url contains topic_folder" | where_exp: "page", "page.layout == 'library_note'" | sort: "order" %}
     {% if notes.size > 0 %}
     <section class="width-prose margin-inline-auto">
-      <h2 class="font-family-serif font-size-2xl margin-block-end-half">Notes</h2>
+      <h2 class="font-family-serif txt-x-large margin-block-end-half">Notes</h2>
       <ol class="flex flex-column gap-sm" style="list-style: decimal; padding-inline-start: var(--space-lg);">
         {% for note in notes %}
         <li>
@@ -48,7 +48,7 @@ layout: default
     {% endif %}
 
     <nav class="width-prose margin-inline-auto margin-block-start padding-block-start border-block-start">
-      <a href="{{ '/library/' | relative_url }}" class="link font-size-sm">&larr; Back to Library</a>
+      <a href="{{ '/library/' | relative_url }}" class="link txt-small">&larr; Back to Library</a>
     </nav>
   </div>
 </article>

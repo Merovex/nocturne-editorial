@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /Users/merovex/Code/hey-world/_includes -name \"*.html\" -exec wc -l {} +)",
+      "Bash(curl -sL \"https://fonts.gstatic.com/s/sourcesans3/v19/nwpStKy2OAdR1K-IwhWudF-R7w0QYsrd.woff2\" -o source-sans-3.woff2)",
+      "Bash(curl -sL \"https://fonts.gstatic.com/s/sourceserif4/v14/vEFF2_tTDB4M7-auWDN0ahZJW3IX2ih5nk3AucvUHf6UD3D_QXg.woff2\" -o source-serif-4.woff2)",
+      "Bash(curl -sL \"https://fonts.gstatic.com/l/font?kit=HI_diYsKILxRpg3hIP6sJ7fM7PqPMcMnZFqUwX28DMyQhM1hTXUdfJg&skey=d94d317bc78fd84e&v=v31\" -o source-code-pro.woff)",
+      "Bash(curl -sL \"https://fonts.gstatic.com/l/font?kit=vEF02_tTDB4M7-auWDN0ahZJW1ge6NmXpVAHV83Bfb_US2D2QYxoUKIkn98pRl9dCM4DrjTMXw&skey=2bda18e6c0fabe3c&v=v14\" -o source-serif-4-italic.woff)"
+    ]
+  }
+}

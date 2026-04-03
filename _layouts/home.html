@@ -3,6 +3,28 @@ layout: default
 ---
 
 <!-- Hero -->
+{% if page.hero_image %}
+<section class="hero-split">
+  <div class="hero-split-text">
+    <h1 class="hero-headline font-family-serif">{{ page.headline | default: site.title }}</h1>
+    {% if page.description %}
+    <p class="hero-description">{{ page.description | default: site.description }}</p>
+    {% endif %}
+    <div class="hero-split-actions">
+      {% include button-cta.html %}
+      {% if page.hero_browse_url %}
+      <a href="{{ page.hero_browse_url | relative_url }}" class="btn btn-outline">Browse books</a>
+      {% endif %}
+    </div>
+  </div>
+  <div class="hero-split-photo">
+    <div class="hero-photo-ring">
+      <img src="{{ page.hero_image | relative_url }}" alt="{{ page.hero_image_alt | default: site.title }}" width="400"
+        height="400" loading="eager">
+    </div>
+  </div>
+</section>
+{% else %}
 <section class="hero">
   <h1 class="hero-headline font-family-serif">{{ page.headline | default: site.title }}</h1>
   {% if page.description %}
@@ -10,60 +32,10 @@ layout: default
   {% endif %}
   {% include newsletter-field.html %}
 </section>
-
-<!-- Series Showcase -->
-{% if site.data.series %}
-<section class="padding-block-double">
-  <div class="width-wide margin-inline-auto padding-inline-half">
-    <h2 class="font-family-serif txt-x-large text-align-center margin-block-end">Our Series</h2>
-    <div class="flex flex-wrap justify-center gap-xl">
-      {% for s in site.data.series %}
-      {% assign s_key = s[0] %}
-      {% assign s_data = s[1] %}
-      {% include series-card.html key=s_key series=s_data %}
-      {% endfor %}
-    </div>
-  </div>
-</section>
 {% endif %}
 
-<!-- Authors -->
-{% if site.data.authors %}
-<section class="padding-block-double background-surface-1">
-  <div class="width-wide margin-inline-auto padding-inline-half text-align-center">
-    {% if page.authors_label %}
-    <p class="label color-accent margin-block-end-half">{{ page.authors_label }}</p>
-    {% endif %}
-    <h2 class="font-family-serif txt-xx-large margin-block-end-half">{{ page.authors_headline | default: "The Authors" }}</h2>
-    {% if page.authors_description %}
-    <p class="color-text-2 width-prose margin-inline-auto margin-block-end">{{ page.authors_description }}</p>
-    {% endif %}
-    <div class="author-duo">
-      {% for a in site.data.authors %}
-      {% assign a_key = a[0] %}
-      {% assign a_data = a[1] %}
-      {% include author-card.html key=a_key author=a_data %}
-      {% endfor %}
-    </div>
-  </div>
-</section>
-{% endif %}
-
-<!-- Latest Posts -->
-{% assign recent_posts = site.posts | slice: 0, 3 %}
-{% if recent_posts.size > 0 %}
-<section class="padding-block-double">
-  <div class="width-wide margin-inline-auto padding-inline-half">
-    <h2 class="font-family-serif txt-x-large text-align-center margin-block-end">Latest from the Archive</h2>
-    <div class="grid grid-columns-1 sm:grid-columns-2 lg:grid-columns-3 gap-xl">
-      {% for post in recent_posts %}
-      {% include post-card.html post=post %}
-      {% endfor %}
-    </div>
-    <div class="text-align-center margin-block-start">
-      <a href="{{ " /blog/" | relative_url }}"
-        class="link font-weight-semibold uppercase txt-small letter-spacing-wider">View all &rarr;</a>
-    </div>
-  </div>
-</section>
-{% endif %}
+<div class="width-wide margin-block-end margin-inline-auto grid grid-columns-1 sm:grid-columns-2 gap-xl">
+  {% for g in site.data.genres %}
+  {% include genre-card.html genre=g %}
+  {% endfor %}
+</div>

@@ -73,6 +73,25 @@
   border-color: var(--border-2);
 }
 
+/* --- Genre card --- */
+.genre-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  background-color: var(--surface-1);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+}
+
+.genre-card h3 {
+  margin-block-end: var(--space-xs);
+}
+
+.genre-card a {
+  margin-block-start: auto;
+}
+
 /* --- Divider --- */
 .divider {
   border: none;

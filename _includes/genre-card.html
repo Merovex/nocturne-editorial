@@ -1,0 +1,14 @@
+{% assign genre = include.genre %}
+
+<div class="genre-card">
+  {% if genre.label %}
+  <p class="label color-accent">{{ genre.label }}</p>
+  {% endif %}
+  <h3 class="font-family-serif txt-x-large">{{ genre.title }}</h3>
+  {% if genre.description %}
+  <p class="color-text-2 line-height-normal">{{ genre.description }}</p>
+  {% endif %}
+  {% if genre.url %}
+  <a href="{{ genre.url | relative_url }}" class="link font-weight-semibold txt-small">{{ genre.link_text | default: "Explore books" }} &rarr;</a>
+  {% endif %}
+</div>

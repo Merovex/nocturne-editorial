@@ -17,6 +17,8 @@
   .sm\:gap-lg { gap: var(--space-lg); }
   .sm\:gap-xl { gap: var(--space-xl); }
   .sm\:padding-inline { padding-inline: var(--space-2xl); }
+
+  .hero-split-actions { flex-direction: row; }
 }
 
 @media (min-width: 1024px) {
@@ -31,4 +33,16 @@
   .lg\:gap-xl  { gap: var(--space-xl); }
   .lg\:gap-2xl { gap: var(--space-2xl); }
   .lg\:padding-inline { padding-inline: var(--space-2xl); }
+
+  .hero-split {
+    flex-direction: row;
+    text-align: left;
+    gap: var(--space-3xl);
+    padding: var(--space-4xl) var(--space-2xl);
+  }
+  .hero-split-text { flex: 1; }
+  .hero-split-actions { align-items: flex-start; }
+  .hero-photo-ring {
+    width: 360px;
+  }
 }

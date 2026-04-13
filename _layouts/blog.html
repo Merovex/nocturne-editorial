@@ -26,8 +26,9 @@ layout: default
         <h2 class="font-family-serif txt-x-large line-height-snug margin-block-end-half">
           <a href="{{ post.url | relative_url }}" class="color-text-1 transition">{{ post.title }}</a>
         </h2>
-        {% if post.excerpt %}
-        <p class="color-text-2 line-clamp-3 margin-block-end-half">{{ post.excerpt | strip_html | truncate: 250 }}</p>
+        {% assign blurb = post.summary | default: post.excerpt %}
+        {% if blurb %}
+        <p class="color-text-2 line-clamp-3 margin-block-end-half">{{ blurb | strip_html | truncate: 250 }}</p>
         {% endif %}
         <a href="{{ post.url | relative_url }}" class="link txt-small uppercase letter-spacing-wider font-weight-semibold">
           Read more &rarr;

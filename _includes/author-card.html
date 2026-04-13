@@ -5,11 +5,11 @@
 <div class="author-card">
   {% if author.icon %}
   <div class="author-card-icon">
-    <img src="{{ author.icon | relative_url }}" alt="" loading="lazy">
+    <img src="{{ author.icon | relative_url }}" alt="" width="80" height="80" loading="lazy">
   </div>
   {% elsif avatar %}
   <div class="author-card-icon">
-    <img src="{{ avatar | relative_url }}" alt="{{ author.name }}" class="border-radius-full object-fit-cover" loading="lazy">
+    <img src="{{ avatar | relative_url }}" alt="{{ author.name }}" class="border-radius-full object-fit-cover" width="80" height="80" loading="lazy">
   </div>
   {% endif %}
   <h3 class="font-family-serif txt-large">{{ author.name }}</h3>

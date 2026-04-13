@@ -12,7 +12,7 @@ layout: default
     <div class="flex flex-column sm:flex-row gap-xl align-items-center margin-block-end-double">
       {% if avatar %}
       <img src="{{ avatar | relative_url }}" alt="{{ author.name }}"
-           class="border-radius-full object-fit-cover" style="width: 150px; height: 150px;" loading="lazy">
+           class="border-radius-full object-fit-cover" width="150" height="150" loading="lazy">
       {% endif %}
       <div>
         <h1 class="font-family-serif txt-xx-large line-height-tight margin-block-end-half">{{ author.name | default: page.title }}</h1>

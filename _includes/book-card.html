@@ -3,20 +3,24 @@
 {% assign col_name = book.collection %}
 {% assign has_url = false %}
 {% if col_name and site.collections %}
-  {% for c in site.collections %}
-    {% if c.label == col_name and c.output %}
-      {% assign has_url = true %}
-    {% endif %}
-  {% endfor %}
+{% for c in site.collections %}
+{% if c.label == col_name and c.output %}
+{% assign has_url = true %}
+{% endif %}
+{% endfor %}
 {% endif %}
 
-{% if has_url %}<a href="{{ book.url | relative_url }}" class="book-card">{% else %}<div class="book-card">{% endif %}
+{% capture filter_attrs %}{% if include.magnet_filter %} data-magnet-filter-target="magnet" data-audience-tag="{{
+book.audience_tag }}"{% endif %}{% endcapture %}
+
+{% if has_url %}<a href="{{ book.url | relative_url }}" class="book-card" {{ filter_attrs }}>{% else %}<div
+    class="book-card" {{ filter_attrs }}>{% endif %}
     {% if book.cover_image %}
     <img src="{{ book.cover_image | relative_url }}" alt="{{ book.title }} cover" class="book-card-cover"
       loading="lazy">
     {% else %}
     <div class="book-card-placeholder">
-      <span>{{ book.title }} ({{has_url}})</span>
+      <span>{{ book.title }}</span>
     </div>
     {% endif %}
     <div class="book-card-body">

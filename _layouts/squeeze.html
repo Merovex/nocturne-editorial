@@ -16,11 +16,9 @@
     {% endif %}
 
     {% if site.magnets.size > 0 %}
-    <div class="squeeze__magnets" data-controller="magnet-filter">
+    <div class="flex flex-wrap justify-center gap-xl margin-block-end" data-controller="magnet-filter">
       {% for magnet in site.magnets %}
-      <div class="squeeze__magnet" data-magnet-filter-target="magnet" data-audience-tag="{{ magnet.audience_tag }}">
-        {% include book-card.html book=magnet %}
-      </div>
+      {% include book-card.html book=magnet magnet_filter=true %}
       {% endfor %}
     </div>
     {% endif %}

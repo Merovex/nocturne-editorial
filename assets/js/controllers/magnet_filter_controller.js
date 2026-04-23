@@ -8,7 +8,7 @@ export default class extends Controller {
     if (!audience) return
     this.magnetTargets.forEach(el => {
       const tag = el.dataset.audienceTag
-      if (tag && tag !== audience) el.hidden = true
+      if (tag && tag !== audience) el.style.display = "none"
     })
   }
 }

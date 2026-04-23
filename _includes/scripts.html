@@ -1,13 +1,15 @@
 <script type="module">
-import { Application } from '{{ "/assets/js/stimulus.min.js" | fingerprint | relative_url }}';
-import ThemeController from '{{ "/assets/js/controllers/theme_controller.js" | fingerprint | relative_url }}';
-import NavController from '{{ "/assets/js/controllers/nav_controller.js" | fingerprint | relative_url }}';
-import NewsletterController from '{{ "/assets/js/controllers/newsletter_controller.js" | fingerprint | relative_url }}';
-import ScrollCtaController from '{{ "/assets/js/controllers/scroll_cta_controller.js" | fingerprint | relative_url }}';
+  import { Application } from '{{ "/assets/js/stimulus.min.js" | fingerprint | relative_url }}';
+  import ThemeController from '{{ "/assets/js/controllers/theme_controller.js" | fingerprint | relative_url }}';
+  import NavController from '{{ "/assets/js/controllers/nav_controller.js" | fingerprint | relative_url }}';
+  import NewsletterController from '{{ "/assets/js/controllers/newsletter_controller.js" | fingerprint | relative_url }}';
+  import ScrollCtaController from '{{ "/assets/js/controllers/scroll_cta_controller.js" | fingerprint | relative_url }}';
+  import MagnetFilterController from '{{ "/assets/js/controllers/magnet_filter_controller.js" | fingerprint | relative_url }}';
 
-window.Stimulus = Application.start();
-window.Stimulus.register("theme", ThemeController);
-window.Stimulus.register("nav", NavController);
-window.Stimulus.register("newsletter", NewsletterController);
-window.Stimulus.register("scroll-cta", ScrollCtaController);
+  window.Stimulus = Application.start();
+  window.Stimulus.register("theme", ThemeController);
+  window.Stimulus.register("nav", NavController);
+  window.Stimulus.register("newsletter", NewsletterController);
+  window.Stimulus.register("scroll-cta", ScrollCtaController);
+  window.Stimulus.register("magnet-filter", MagnetFilterController);
 </script>
